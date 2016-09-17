@@ -39,6 +39,11 @@ angular.module('app')
         url: '/party',
         templateUrl: 'templates/party.html',
         controller: 'PartyController'
+      })
+      .state('over', {
+        url: '/over',
+        templateUrl: 'templates/over.html',
+        controller: 'OverController'
       });
 
     // if none of the above states are matched, use this as the fallback

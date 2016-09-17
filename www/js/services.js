@@ -97,7 +97,7 @@ angular.module('app')
       get: function () {
         var tmp = window.localStorage.getItem('lastDrink');
         var fromjson = angular.fromJson(tmp);
-        return tmp ? {name:fromjson.name,category:fromjson.category,volume:fromjson.volume,alcohol:fromjson.alcohol} : {name:'',alcohol:'',volume:''};
+        return tmp ? angular.fromJson(tmp) : {name:'',alcohol:'',volume:''};
       },
       set: function (drinkObject) {
         window.localStorage.setItem('lastDrink', angular.toJson(drinkObject));

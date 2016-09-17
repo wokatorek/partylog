@@ -134,7 +134,7 @@ angular.module('app')
   .controller('AboutController', function ($scope) {
   })
 
-  .controller('PartyController', function ($scope,partyData,lastDrink, $ionicModal, definedDrinks) {
+  .controller('PartyController', function ($scope,$state, partyData,lastDrink, $ionicModal, definedDrinks) {
     $scope.partyData = partyData.get();
     $scope.lastDrink = lastDrink.get();
     console.debug(lastDrink.get());
@@ -177,4 +177,13 @@ angular.module('app')
       $scope.lastDrink = drink;
       $scope.modal.hide();
     };
-  });
+
+    $scope.partyIsOver = function(){
+      $state.go('over');
+    }
+  })
+
+.controller('OverController', function ($scope) {
+});
+
+
