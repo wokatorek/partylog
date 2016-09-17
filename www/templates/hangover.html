@@ -1,14 +1,19 @@
-
-<ion-view view-title="Hangover">
+<ion-view view-title="Hangover?">
   <ion-content class="padding">
-    <h4>
-      Since last party has passed .... hours.
-    </h4>
-    <h4>
-     You drank there ... beers/glasses of wine.
-    </h4>
-    <h4>
-      Your Blood Alcohol Concentration Level Percentage equals approximately: ........ .
-    </h4>
+    <ion-list>
+      <div class="list card col-center col">
+        <div class="row"><div class="col text-center"><h5>Since last party it has passed:</h5></div></div>
+        <div class="row"><div class="col text-center"><h2>{{timeElapsedString}}</h2></div></div>
+      </div>
+      <div class="list card col-center col">
+        <div class="row"><div class="col text-center"><h5>You drank</h5><h2>{{lastParty.drinks.length}}</h2></div></div>
+        <div class="row"><div class="col text-center"><h5>drinks there, which translates to</h5></div></div>
+        <div class="row"><div class="col text-center"><h2>{{alcoholMiligrams}}</h2><h5>miligrams of alcohol</h5></div></div>
+      </div>
+      <div class="list card col-center col">
+        <div class="row"><div class="col text-center"><h5>Based on that and on personal information you provided your estimaded blood alcohol content is:</h5></div></div>
+        <div class="row"><div class="col text-center"><h1 ng-class="{assertive: estimatedBAC>0,balanced: estimatedBAC==0}">{{estimatedBAC}}‰</h1></div></div>
+      </div>
+    </ion-list>
   </ion-content>
 </ion-view>
