@@ -34,6 +34,9 @@ angular.module('app')
         var tmp = angular.fromJson(window.localStorage.getItem('partyData'));
         tmp.drinks.push(drinkObject);
         window.localStorage.setItem('partyData', angular.toJson(tmp));
+      },
+      clear: function(){
+        window.localStorage.removeItem('partyData');
       }
     }
   })
