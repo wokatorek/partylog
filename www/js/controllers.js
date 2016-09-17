@@ -3,9 +3,9 @@
 angular.module('app')
 
   .controller('HomeController', function ($scope,partyData, $ionicModal, $state) {
-    $scope.partyData = partyData.get();
+    $scope.partyData = {name: '', start: '', end: '', limit: {type: '', quantity: '', unit: ''},drinks:[]};
 
-    $ionicModal.fromTemplateUrl('templates/modal.html', {
+    $ionicModal.fromTemplateUrl('templates/partyModal.html', {
       scope: $scope,
       animation: 'slide-in-left'
     }).then(function(modal) {
@@ -24,7 +24,7 @@ angular.module('app')
     $scope.letsGetThisPartyStarted = function openPartyModal() {
       $scope.partyData.start = new Date().toLocaleString();
       $scope.partyData.startDateTime = new Date().getTime();
-      console.log(new Date().getTime());
+      $scope.partyData.limit.datetime = new Date();
       $scope.modal.show();
     };
 
@@ -32,6 +32,25 @@ angular.module('app')
       $scope.partyData = {name: '', start: '', end: '', limit: {type: '', quantity: '', unit: ''},drinks:[]};
       $scope.modal.hide();
     };
+
+
+
+    $scope.showDatePicker = function(){
+      var options = {
+        date: new Date(),
+        mode: 'date'
+      };
+
+      function onSuccess(date) {
+        alert('Selected date: ' + date);
+      }
+
+      function onError(error) { // Android only
+        alert('Error: ' + error);
+      }
+
+      datePicker.show(options, onSuccess, onError);
+    }
   })
 
   .controller('HangoverController', function ($scope, historyData, settings) {
