@@ -28,11 +28,17 @@ angular.module('app')
         };
       },
       set: function (partyObject) {
+        console.log('setting party: '+partyObject);
         window.localStorage.setItem('partyData', angular.toJson(partyObject));
       },
       addDrink: function (drinkObject) {
+        console.log('adding drink: '+drinkObject);
+        console.log(drinkObject);
         var tmp = angular.fromJson(window.localStorage.getItem('partyData'));
+        console.log('partyData: '+tmp);
         tmp.drinks.push(drinkObject);
+        console.log('partyData: '+tmp);
+        console.log('partyData.drinks.length: '+tmp.drinks.length);
         window.localStorage.setItem('partyData', angular.toJson(tmp));
       },
       clear: function(){
@@ -99,7 +105,7 @@ angular.module('app')
     return {
       get: function () {
         var tmp = window.localStorage.getItem('lastDrink');
-        var fromjson = angular.fromJson(tmp);
+        console.log('lastDrink: '+angular.fromJson(tmp));
         return tmp ? angular.fromJson(tmp) : {name:'',alcohol:'',volume:''};
       },
       set: function (drinkObject) {

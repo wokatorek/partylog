@@ -19,7 +19,7 @@
           Drink
         </div>
         <select ng-model="selectedDrink">
-          <option selected ng-value="mockupDrink">Regular beer 0.5l</option>
+          <option selected ng-value="{name:'Regular beer',category: 'beer',volume: '500',alcohol: '0.04'}">Regular beer 0.5l</option>
         </select>
       </label>
       <button class="item button button-block button-balanced" ng-click="addSavedDrink(selectedDrink)">Add drink
