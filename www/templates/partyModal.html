@@ -14,15 +14,16 @@
       <div class="item item-divider">
         Limit: {{partyData.limit.type}}
       </div>
-      <ion-radio ng-model="partyData.limit.type" ng-value="'none'" ng-change="">no limits</ion-radio>
+      <ion-radio ng-model="partyData.limit.type" ng-value="'none'">no limits</ion-radio>
       <ion-radio ng-model="partyData.limit.type" ng-value="'time'">time limit</ion-radio>
       <ion-radio ng-model="partyData.limit.type" ng-value="'alcohol'">alcohol amount limit</ion-radio>
       <label class="item item-input" ng-show="partyData.limit.type==='time'">
         <span class="input-label">Date</span>
         <input type="datetime-local" ng-model="partyData.limit.datetime">
       </label>
-      <div class="item" ng-show="partyData.limit.type==='alcohol'">
-        <span>testtext</span>
+      <div class="item item-input item-stacked-label" ng-show="partyData.limit.type==='alcohol'">
+        <span class="input-label">Number of drinks to have</span>
+        <input type="number" placeholder="0" ng-model="partyData.limit.quantity">
       </div>
       <div class="item">
         <div class="button-bar">

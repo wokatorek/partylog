@@ -143,6 +143,12 @@ angular.module('app')
     $scope.selectedDrink = null;
     $scope.newDrink = {name:'',category:'',volume:0,alcohol:0};
     $scope.mockupDrink = {name:'Regular beer',category: 'beer',volume: '500',alcohol: '0.04'};
+    $scope.limitString = '';
+    if($scope.partyData.limit.type==='time'){
+      $scope.limitString = new Date($scope.partyData.limit.datetime).toLocaleString();
+    } else if($scope.partyData.limit.type==='alcohol'){
+      $scope.limitString = '' + $scope.partyData.limit.quantity.toString() + ' drinks';
+    }
 
     $scope.duplicateDrink = function (){
       partyData.addDrink($scope.lastDrink);

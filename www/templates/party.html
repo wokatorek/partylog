@@ -4,12 +4,11 @@
     <ion-list>
       <ion-item class="item-divider">Party started at: {{partyData.start}}</ion-item>
       <ion-item class="item-divider">You drank: {{partyData.drinks.length}} drinks</ion-item>
-      <ion-item class="item-divider">Your limit is: x drinks / datetime</ion-item>
+      <ion-item class="item-divider" ng-hide="partyData.limit.type==='none'">Your limit is: {{limitString}} </ion-item>
       <ion-item><button class="button button-block button-large button-positive" ng-click="duplicateDrink()" ng-disabled="(lastDrink.name && lastDrink.name==='')"><i class="icon-left  ion-android-bar"></i> <i class="icon-left  ion-android-bar"></i> Duplicate last drink <span ng-if="(lastDrink.name && lastDrink.name!=='')">({{lastDrink.name}},{{lastDrink.volume}}ml,{{lastDrink.alcohol*100}}%)</span></button> </ion-item>
       <ion-item><button class="button button-block button-large button-balanced" ng-click="addDrinkModal()"> <i class="icon-left  ion-android-add "></i> <i class="icon-left  ion-android-bar"></i> Add drink</button> </ion-item>
       <ion-item><button class="button button-block button-large button-energized" ng-click="changeLimit()" ng-disabled="limit===null"><i class="icon ion-android-create"></i> Change limit </button> </ion-item>
       <ion-item><button class="button button-block button-large button-assertive" ng-click="partyIsOver()"><i class="icon ion-android-exit"></i> Party is over</button> </ion-item>
     </ion-list>
-
   </ion-content>
 </ion-view>
