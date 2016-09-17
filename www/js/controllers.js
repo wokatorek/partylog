@@ -134,9 +134,10 @@ angular.module('app')
   .controller('AboutController', function ($scope) {
   })
 
-  .controller('PartyController', function ($scope,$state, partyData,lastDrink, $ionicModal, definedDrinks) {
+  .controller('PartyController', function ($scope,$state, partyData,lastDrink, $ionicModal, definedDrinks, historyData) {
     $scope.partyData = partyData.get();
     $scope.lastDrink = lastDrink.get();
+    $scope.historyData = historyData.get();
     console.debug(lastDrink.get());
     $scope.limit = null;
     $scope.selectedCategory = 'All';
@@ -191,7 +192,10 @@ angular.module('app')
     }
   })
 
-.controller('OverController', function ($scope) {
+.controller('OverController', function ($scope, settings) {
+  $scope.settings=settings;
+
+
 });
 
 

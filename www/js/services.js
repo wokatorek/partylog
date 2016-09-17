@@ -86,7 +86,7 @@ angular.module('app')
       },
       addParty: function (partyObject) {
         var tmp = angular.fromJson(window.localStorage.getItem('historyData'));
-        tmp.drinks.push(partyObject);
+        tmp.push(partyObject);
         window.localStorage.setItem('historyData', angular.toJson(tmp));
       },
       removeParty: function (partyObject){
