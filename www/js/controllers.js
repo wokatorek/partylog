@@ -23,6 +23,8 @@ angular.module('app')
 
     $scope.letsGetThisPartyStarted = function openPartyModal() {
       $scope.partyData.start = new Date().toLocaleString();
+      $scope.partyData.startDateTime = new Date().getTime();
+      console.log(new Date().getTime());
       $scope.modal.show();
     };
 
@@ -32,11 +34,45 @@ angular.module('app')
     };
   })
 
-  .controller('HangoverController', function ($scope) {
+  .controller('HangoverController', function ($scope, historyData) {
+    $scope.lastParty = {name: '',endDateTime: '1'};
+    angular.forEach(historyData.get(),function(e){
+      if(e.endDateTime>$scope.lastParty.endDateTime){$scope.lastParty = e;}
+    });
+    console.debug($scope.lastParty.endDateTime);
+    $scope.timeElapsedString= getTimeElapsedString($scope.lastParty.endDateTime);
+
+    function getTimeElapsedString(endDateTime){
+      var time = endDateTime,
+        timeNow = new Date().getTime(),
+        difference = timeNow - time,
+        seconds = Math.floor(difference / 1000),
+        minutes = Math.floor(seconds / 60),
+        hours = Math.floor(minutes / 60),
+        days = Math.floor(hours / 24);
+      console.debug(difference);
+      console.debug(time);
+      console.debug(timeNow);
+      if (days > 1) {
+        return days + " days ago";
+      } else if (days == 1) {
+        return "1 day ago"
+      } else if (hours > 1) {
+        return hours + " hours ago";
+      } else if (hours == 1) {
+        return "an hour ago";
+      } else if (minutes > 1) {
+        return minutes + " minutes ago";
+      } else if (minutes == 1){
+        return "a minute ago";
+      } else {
+        return "a few seconds ago";
+      }
+    }
   })
 
   .controller('PartylogController', function ($scope, historyData) {
-    $scope.historyData = historyData;
+    $scope.historyData = historyData.get();
   })
 
   .controller('SettingsController', function ($scope, settings, $rootScope, $state) {
@@ -51,10 +87,10 @@ angular.module('app')
   .controller('AboutController', function ($scope) {
   })
 
-  .controller('PartyController', function ($log,$scope,partyData,lastDrink, $ionicModal, definedDrinks) {
+  .controller('PartyController', function ($scope,partyData,lastDrink, $ionicModal, definedDrinks) {
     $scope.partyData = partyData.get();
     $scope.lastDrink = lastDrink.get();
-    $log.debug(lastDrink.get());
+    console.debug(lastDrink.get());
     $scope.limit = null;
     $scope.selectedCategory = 'All';
     $scope.selectedDrink = null;

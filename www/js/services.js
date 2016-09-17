@@ -20,7 +20,9 @@ angular.module('app')
         return tmp ? angular.fromJson(tmp) : {
           name: '',
           start: '',
+          startDateTime: 0,
           end: '',
+          endDateTime: 0,
           limit: {type: '', quantity: '', unit: ''},
           drinks: []
         };
@@ -56,19 +58,23 @@ angular.module('app')
       }
     }
   })
-  .factory('historyData', function ($log) {
+  .factory('historyData', function () {
     return {
       get: function () {
         var tmp = window.localStorage.getItem('historyData');
         return tmp ? angular.fromJson(tmp) : [{
           name: 'My Birthday',
-          start: '09.07.2016, 18:00',
-          end: '09.07.2016, 24:00',
+          start: '16.09.2016, 17:50',
+          startDateTime: 1474048200000,
+          end: '16.09.2016, 23:50',
+          endDateTime: 1474069800000,
           drinks: [{name: 'Beer', alcohol: '0.04', volume: '500'}, {name: 'Beer', alcohol: '0.04', volume: '500'}]
         }, {
           name: 'Graduation Party',
-          start: '25.06.2016, 17:00',
-          end: '25.05.2016, 22:30',
+          start: '25.08.2016, 17:00',
+          startDateTime: 1466874000000,
+          end: '25.08.2016, 22:30',
+          endDateTime: 1466893800000,
           drinks: [{name: 'Wine', alcohol: '0.12', volume: '150'}]
         }]
       },
@@ -81,18 +87,16 @@ angular.module('app')
         window.localStorage.setItem('historyData', angular.toJson(tmp));
       },
       removeParty: function (partyObject){
-        $log.err('Method not implemented!!');
+        console.err('Method not implemented!!');
         throw new DOMException();
       }
     }
   })
-  .factory('lastDrink', function ($log) {
+  .factory('lastDrink', function () {
     return {
       get: function () {
         var tmp = window.localStorage.getItem('lastDrink');
-        $log.debug(tmp);
         var fromjson = angular.fromJson(tmp);
-        $log.debug(fromjson);
         return tmp ? {name:fromjson.name,category:fromjson.category,volume:fromjson.volume,alcohol:fromjson.alcohol} : {name:'',alcohol:'',volume:''};
       },
       set: function (drinkObject) {
