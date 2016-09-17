@@ -4,6 +4,7 @@ angular.module('app')
 
   .controller('HomeController', function ($scope,partyData, $ionicModal, $state) {
     $scope.partyData = {name: '', start: '', end: '', limit: {type: '', quantity: '', unit: ''},drinks:[]};
+    partyData.clear();
 
     $ionicModal.fromTemplateUrl('templates/partyModal.html', {
       scope: $scope,
@@ -184,7 +185,7 @@ angular.module('app')
       // partyData.addDrink(drink);
       // lastDrink.set(drink);
       // $scope.lastDrink = drink;
-      $partyData.drinks.push($scope.mockupDrink);
+      $scope.partyData.drinks.push($scope.mockupDrink);
       lastDrink.set($scope.mockupDrink);
       $scope.lastDrink = $scope.mockupDrink;
       $scope.modal.hide();
