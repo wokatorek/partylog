@@ -34,7 +34,8 @@ angular.module('app')
     };
   })
 
-  .controller('HangoverController', function ($scope, historyData) {
+  .controller('HangoverController', function ($scope, historyData, settings) {
+    $scope.settings = settings.get();
     $scope.lastParty = {name: '',endDateTime: '1'};
     angular.forEach(historyData.get(),function(e){
       if(e.endDateTime>$scope.lastParty.endDateTime){$scope.lastParty = e;}
@@ -68,6 +69,33 @@ angular.module('app')
       } else {
         return "a few seconds ago";
       }
+    }
+
+    $scope.alcoholMiligrams = calculateMiligrams($scope.lastParty.drinks);
+
+    function calculateMiligrams(drinks) {
+      var grams=0;
+      for (var i=0; i < drinks.length; i++){
+        grams=grams+(drinks[i].volume*drinks[i].alcohol*0.79);
+      }
+      return grams*1000;
+    }
+
+    $scope.estimatedBAC = estimateBAC($scope.alcoholMiligrams, $scope.settings, $scope.lastParty);
+
+    function estimateBAC(alcoholMiligrams, settings, partydata){
+      var r = 0;
+      if (settings.sex === 'female'){
+        r = 0.68;
+      } else if(settings.sex === 'male'){
+        r = 0.76;
+      }
+      var t = (new Date().getTime()-partydata.startDateTime)/1000/3600;
+      console.log(t);
+      var estimatedBAC = ((alcoholMiligrams/1000)/10)/(settings.weight*r)-(0.017*t);
+      if (estimatedBAC <= 0){
+        return 0;
+      } else return estimatedBAC.toFixed(2);
     }
   })
 

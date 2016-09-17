@@ -6,7 +6,7 @@ angular.module('app')
     return {
       get: function () {
         var tmp = window.localStorage.getItem('settings');
-        return tmp ? angular.fromJson(tmp) : {sex: 'none', height: 0, weight: 0, address: ''};
+        return tmp ? angular.fromJson(tmp) : {sex: 'female', height: 160, weight: 50, address: ''};
       },
       set: function (settingsObject) {
         window.localStorage.setItem('settings', angular.toJson(settingsObject));
