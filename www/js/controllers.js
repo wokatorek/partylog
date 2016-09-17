@@ -29,7 +29,8 @@ angular.module('app')
   .controller('HangoverController', function ($scope) {
   })
 
-  .controller('PartylogController', function ($scope) {
+  .controller('PartylogController', function ($scope, historyData) {
+    $scope.historyData = historyData;
   })
 
   .controller('SettingsController', function ($scope, settings, $rootScope) {

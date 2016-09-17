@@ -1,3 +1,11 @@
 <ion-view view-title="PartyLog">
-
+  <ion-content class="padding">
+    <ion-list>
+    <div class="item item-text-wrap" ng-repeat="historyData in historyData">
+      <div  ng-repeat="(key, value) in historyData">
+        {{key}} : {{value}}
+      </div>
+    </div>
+    </ion-list>
+  </ion-content>
 </ion-view>
