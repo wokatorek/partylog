@@ -1,11 +1,19 @@
 <ion-view view-title="PartyLog">
   <ion-content class="padding">
     <ion-list>
-    <div class="item item-text-wrap" ng-repeat="historyData in historyData">
-      <div  ng-repeat="(key, value) in historyData">
-        {{key}} : {{value}}
+      <div class="item item-text-wrap" ng-repeat="historyData in historyData">
+        <div ng-repeat="(key, value) in historyData" >
+          <div ng-if="key !== 'drinks'">
+            {{key}} : {{value}}
+          </div>
+          <div ng-if="key === 'drinks'">
+            {{key}}:
+            <div ng-repeat="drink in value">
+              {{drink.name}}, {{drink.alcohol*100}}%, {{drink.volume}}ml
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
     </ion-list>
   </ion-content>
 </ion-view>
