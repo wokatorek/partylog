@@ -120,6 +120,16 @@ angular.module('app')
 
   .controller('PartylogController', function ($scope, historyData) {
     $scope.historyData = historyData.get();
+    $scope.toggleGroup = function (group) {
+      if ($scope.isGroupShown(group)) {
+        $scope.shownGroup = null;
+      } else {
+        $scope.shownGroup = group;
+      }
+    };
+    $scope.isGroupShown = function (group) {
+      return $scope.shownGroup === group;
+    };
   })
 
   .controller('SettingsController', function ($scope, settings, $rootScope, $state) {
