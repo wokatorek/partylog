@@ -4,7 +4,7 @@
     <ion-list>
       <ion-item class="item-divider">Party started at: {{partyData.start}}</ion-item>
       <ion-item class="item-divider">You drank: {{partyData.drinks.length}} drinks</ion-item>
-      <ion-item class="item-divider">Your limit is: x drinks / datetime</ion-item>
+      <ion-item class="item-divider" ng-hide="partyData.limit.type==='none'">Your limit is: {{limitString}} </ion-item>
       <ion-item><button class="button button-block button-positive" ng-click="duplicateDrink()" ng-disabled="(lastDrink.name && lastDrink.name==='')">Duplicate last drink <span ng-if="(lastDrink.name && lastDrink.name!=='')">({{lastDrink.name}},{{lastDrink.volume}}ml,{{lastDrink.alcohol*100}}%)</span></button> </ion-item>
       <ion-item><button class="button button-block button-balanced" ng-click="addDrinkModal()">Add drink</button> </ion-item>
       <ion-item><button class="button button-block button-energized" ng-click="changeLimit()" ng-disabled="limit===null">Change limit</button> </ion-item>
