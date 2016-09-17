@@ -34,6 +34,11 @@ angular.module('app')
         url: '/about',
         templateUrl: 'templates/about.html',
         controller: 'AboutController'
+      })
+      .state('party', {
+        url: '/party',
+        templateUrl: 'templates/party.html',
+        controller: 'PartyController'
       });
 
     // if none of the above states are matched, use this as the fallback

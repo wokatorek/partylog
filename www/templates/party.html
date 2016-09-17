@@ -1,0 +1,14 @@
+<ion-view view-title="Party">
+  <ion-content class="padding">
+    <h1>Party: {{partyData.name}}</h1>
+    <ion-list>
+      <ion-item class="item-divider">Party started at: {{partyData.start}}</ion-item>
+      <ion-item class="item-divider">You drank: {{partyData.drinks.length}} drinks</ion-item>
+      <ion-item><button class="button button-block button-assertive" ng-click="duplicateDrink()">Duplicate last drink</button> </ion-item>
+      <ion-item><button class="button button-block button-assertive" ng-click="addDrinkModal()">Add drink</button> </ion-item>
+      <ion-item><button class="button button-block button-assertive" ng-click="changeLimit()" disabled="true">Change limit</button> </ion-item>
+      <ion-item><button class="button button-block button-assertive" ng-click="partyIsOver()" disabled="true">Party is over</button> </ion-item>
+    </ion-list>
+
+  </ion-content>
+</ion-view>

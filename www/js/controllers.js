@@ -2,7 +2,8 @@
 
 angular.module('app')
 
-  .controller('HomeController', function ($scope,partyData, $ionicModal) {
+  .controller('HomeController', function ($scope,partyData, $ionicModal, $state) {
+    $scope.partyData = partyData;
 
     $ionicModal.fromTemplateUrl('templates/modal.html', {
       scope: $scope,
@@ -10,8 +11,9 @@ angular.module('app')
     }).then(function(modal) {
       $scope.modal = modal;
     });
-    $scope.closeModal = function() {
+    $scope.seriouslyStartTheParty = function() {
       $scope.modal.hide();
+      $state.go('party');
     };
     // Cleanup the modal when we're done with it!
     $scope.$on('$destroy', function() {
@@ -19,6 +21,7 @@ angular.module('app')
     });
 
     $scope.letsGetThisPartyStarted = function openPartyModal() {
+      partyData.start = new Date();
       $scope.modal.show();
     };
   })
@@ -35,4 +38,8 @@ angular.module('app')
   })
 
   .controller('AboutController', function ($scope) {
+  })
+
+  .controller('PartyController', function ($scope,partyData) {
+    $scope.partyData = partyData;
   });
