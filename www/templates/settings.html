@@ -35,7 +35,7 @@
           <input type="tel" name="phone" placeholder="Number" ng-model="settings.phone" required minlength="9" maxlength="30">
         </label>
 
-        <div class="input-label">
+        <div class="item">
           Address
         </div>
         <label class="item item-input">
@@ -58,10 +58,10 @@
           <!--<div ng-message="maxlength">Your address must be shorter than 30 signs</div>-->
         <!--</div>-->
       </form>
+      <div class="item">
+        <button type="submit" class="button button-block button-positive" ng-click="submit()">Save <i
+          class="icon ion-checkmark-round"></i></button>
+      </div>
     </ion-list>
-    <div class="bar bar-footer">
-      <button type="submit" class="button button-block button-positive" ng-click="submit()">Save <i
-        class="icon ion-checkmark-round"></i></button>
-    </div>
   </ion-content>
 </ion-view>
