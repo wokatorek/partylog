@@ -185,6 +185,8 @@ angular.module('app')
     };
 
     $scope.partyIsOver = function(){
+      historyData.addParty(partyData);
+      partyData.clear();
       $state.go('over');
     }
   })
