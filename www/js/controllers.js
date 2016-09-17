@@ -29,6 +29,7 @@ angular.module('app')
       $scope.partyData.start = new Date().toLocaleString();
       $scope.partyData.startDateTime = new Date().getTime();
       $scope.partyData.limit.datetime = new Date();
+      partyData.set($scope.partyData);
       $scope.modal.show();
     };
 
