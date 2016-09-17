@@ -134,7 +134,7 @@ angular.module('app')
   .controller('AboutController', function ($scope) {
   })
 
-  .controller('PartyController', function ($scope,$state, partyData,lastDrink, $ionicModal, definedDrinks) {
+  .controller('PartyController', function ($scope,$state, partyData,lastDrink, $ionicModal, definedDrinks, historyData) {
     $scope.partyData = partyData.get();
     $scope.lastDrink = lastDrink.get();
     console.debug(lastDrink.get());
@@ -170,9 +170,12 @@ angular.module('app')
     });
 
     $scope.addSavedDrink = function(drink){
-      partyData.addDrink(drink);
-      lastDrink.set(drink);
-      $scope.lastDrink = drink;
+      // partyData.addDrink(drink);
+      // lastDrink.set(drink);
+      // $scope.lastDrink = drink;
+      $partyData.drinks.push($scope.mockupDrink);
+      lastDrink.set($scope.mockupDrink);
+      $scope.lastDrink = $scope.mockupDrink;
       $scope.modal.hide();
     };
 
