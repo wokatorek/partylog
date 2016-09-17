@@ -1,0 +1,48 @@
+<ion-view view-title="Settings">
+  <ion-content class="padding">
+    <ion-list>
+      <form name="settingsForm" novalidate>
+        <label class="item item-input item-select">
+          <div class="input-label">
+            Sex
+          </div>
+          <select ng-model="settings.sex">
+            <option value="male" selected>Male</option>
+            <option value="female">Female</option>
+          </select>
+        </label>
+        <label class="item item-input">
+          <span class="input-label">Height [cm]</span>
+          <input type="number" name="height" ng-model="settings.height" required min="1" max="300">
+        </label>
+        <!--<div class="item" ng-messages="settingsForm.$submitted && settingsForm.height.$error" style="color:maroon" role="alert">-->
+          <!--<div ng-message="required">You did not enter your height</div>-->
+          <!--<div ng-message="min">Your height must be higher than 1</div>-->
+          <!--<div ng-message="max">Your height must be lower than 300</div>-->
+        <!--</div>-->
+        <label class="item item-input">
+          <span class="input-label">Weight [kg]</span>
+          <input type="number" name="weight" ng-model="settings.weight" required min="1" max="300">
+        </label>
+        <!--<div class="item" ng-messages="settingsForm.weight.$error && settingsForm.$submitted" style="color:maroon" role="alert">-->
+          <!--<div ng-message="required">You did not enter your weight</div>-->
+          <!--<div ng-message="min">Your weight must be higher than 1</div>-->
+          <!--<div ng-message="max">Your weight must be lower than 300</div>-->
+        <!--</div>-->
+        <label class="item item-input">
+          <span class="input-label">Address</span>
+          <input type="text" name="address" ng-model="settings.address" required minlength="5" maxlength="30">
+        </label>
+        <!--<div class="item" ng-messages="settingsForm.address.$error && settingsForm.$submitted" style="color:maroon" role="alert">-->
+          <!--<div ng-message="required">You did not enter your address</div>-->
+          <!--<div ng-message="minlength">Your address must be longer than 5 signs</div>-->
+          <!--<div ng-message="maxlength">Your address must be shorter than 30 signs</div>-->
+        <!--</div>-->
+      </form>
+    </ion-list>
+    <div class="bar bar-footer">
+      <button type="submit" class="button button-block button-positive" ui-sref="home">Save <i
+        class="icon ion-checkmark-round"></i></button>
+    </div>
+  </ion-content>
+</ion-view>
