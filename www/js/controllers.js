@@ -211,9 +211,8 @@ angular.module('app')
   })
 
 .controller('OverController', function ($scope, settings) {
-  $scope.settings=settings;
-
-
+  $scope.settings = settings.get();
+  $scope.phoneno = $scope.settings.phone;
 });
 
 
