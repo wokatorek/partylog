@@ -29,15 +29,29 @@
           <!--<div ng-message="min">Your weight must be higher than 1</div>-->
           <!--<div ng-message="max">Your weight must be lower than 300</div>-->
         <!--</div>-->
-        <label class="item item-input">
-          <span class="input-label">Address</span>
-          <input type="text" name="address" ng-model="settings.address" required minlength="5" maxlength="30">
-        </label>
 
         <label class="item item-input">
-          <span class="input-label">Favourite Taxi Phone Number</span>
-          <input type="tel" name="phone" ng-model="settings.phone" required minlength="9" maxlength="30">
+          <span class="input-label">Fav. Taxi Phone </span>
+          <input type="tel" name="phone" placeholder="Number" ng-model="settings.phone" required minlength="9" maxlength="30">
         </label>
+
+        <div class="input-label">
+          Address
+        </div>
+        <label class="item item-input">
+          <span class="input-label">Street</span>
+          <input type="text" placeholder="Street" name="street" ng-model="settings.street" required minlength="2" maxlength="30">
+        </label>
+          <label class="item item-input">
+          <span class="input-label">Number</span>
+          <input type="number" placeholder="Number" name="number" ng-model="settings.number" required minlength="1" maxlength="5">
+          </label>
+            <label class="item item-input">
+            <span class="input-label">Town</span>
+          <input type="text" placeholder="Town" name="town" ng-model="settings.town" required minlength="5" maxlength="30">
+        </label>
+
+
         <!--<div class="item" ng-messages="settingsForm.address.$error && settingsForm.$submitted" style="color:maroon" role="alert">-->
           <!--<div ng-message="required">You did not enter your address</div>-->
           <!--<div ng-message="minlength">Your address must be longer than 5 signs</div>-->
