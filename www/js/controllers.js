@@ -2,26 +2,26 @@
 
 angular.module('app')
 
-  .controller('HomeController', function ($scope,partyData, $ionicModal, $state, historyData) {
-    $scope.partyData = {name: '', start: '', end: '', limit: {type: '', quantity: '', unit: ''},drinks:[]};
+  .controller('HomeController', function ($scope, partyData, $ionicModal, $state, historyData) {
+    $scope.partyData = {name: '', start: '', end: '', limit: {type: '', quantity: '', unit: ''}, drinks: []};
     partyData.clear();
-    if(!window.localStorage.getItem('historyData')){
+    if (!window.localStorage.getItem('historyData')) {
       historyData.set([]);
     }
 
     $ionicModal.fromTemplateUrl('templates/partyModal.html', {
       scope: $scope,
       animation: 'slide-in-left'
-    }).then(function(modal) {
+    }).then(function (modal) {
       $scope.modal = modal;
     });
-    $scope.seriouslyStartTheParty = function() {
+    $scope.seriouslyStartTheParty = function () {
       $scope.modal.hide();
       partyData.set($scope.partyData);
       $state.go('party');
     };
     // Cleanup the modal when we're done with it!
-    $scope.$on('$destroy', function() {
+    $scope.$on('$destroy', function () {
       $scope.modal.remove();
     });
 
@@ -33,14 +33,13 @@ angular.module('app')
       $scope.modal.show();
     };
 
-    $scope.clearAndLeave = function(){
-      $scope.partyData = {name: '', start: '', end: '', limit: {type: '', quantity: '', unit: ''},drinks:[]};
+    $scope.clearAndLeave = function () {
+      $scope.partyData = {name: '', start: '', end: '', limit: {type: '', quantity: '', unit: ''}, drinks: []};
       $scope.modal.hide();
     };
 
 
-
-    $scope.showDatePicker = function(){
+    $scope.showDatePicker = function () {
       var options = {
         date: new Date(),
         mode: 'date'
@@ -60,14 +59,16 @@ angular.module('app')
 
   .controller('HangoverController', function ($scope, historyData, settings) {
     $scope.settings = settings.get();
-    $scope.lastParty = {name: '',endDateTime: '1'};
-    angular.forEach(historyData.get(),function(e){
-      if(e.endDateTime>$scope.lastParty.endDateTime){$scope.lastParty = e;}
+    $scope.lastParty = {name: '', endDateTime: '1'};
+    angular.forEach(historyData.get(), function (e) {
+      if (e.endDateTime > $scope.lastParty.endDateTime) {
+        $scope.lastParty = e;
+      }
     });
     console.debug($scope.lastParty.endDateTime);
-    $scope.timeElapsedString= getTimeElapsedString($scope.lastParty.endDateTime);
+    $scope.timeElapsedString = getTimeElapsedString($scope.lastParty.endDateTime);
 
-    function getTimeElapsedString(endDateTime){
+    function getTimeElapsedString(endDateTime) {
       var time = endDateTime,
         timeNow = new Date().getTime(),
         difference = timeNow - time,
@@ -85,7 +86,7 @@ angular.module('app')
         return "an hour ago";
       } else if (minutes > 1) {
         return minutes + " minutes ago";
-      } else if (minutes == 1){
+      } else if (minutes == 1) {
         return "a minute ago";
       } else {
         return "a few seconds ago";
@@ -95,26 +96,26 @@ angular.module('app')
     $scope.alcoholMiligrams = calculateMiligrams($scope.lastParty.drinks);
 
     function calculateMiligrams(drinks) {
-      var grams=0;
-      for (var i=0; i < drinks.length; i++){
-        grams=grams+(drinks[i].volume*drinks[i].alcohol*0.79);
+      var grams = 0;
+      for (var i = 0; i < drinks.length; i++) {
+        grams = grams + (drinks[i].volume * drinks[i].alcohol * 0.79);
       }
-      return grams*1000;
+      return grams * 1000;
     }
 
     $scope.estimatedBAC = estimateBAC($scope.alcoholMiligrams, $scope.settings, $scope.lastParty);
 
-    function estimateBAC(alcoholMiligrams, settings, partydata){
+    function estimateBAC(alcoholMiligrams, settings, partydata) {
       var r = 0;
-      if (settings.sex === 'female'){
+      if (settings.sex === 'female') {
         r = 0.68;
-      } else if(settings.sex === 'male'){
+      } else if (settings.sex === 'male') {
         r = 0.76;
       }
-      var t = (new Date().getTime()-partydata.startDateTime)/1000/3600;
+      var t = (new Date().getTime() - partydata.startDateTime) / 1000 / 3600;
       console.log(t);
-      var estimatedBAC = ((alcoholMiligrams/1000)/10)/(settings.weight*r)-(0.017*t);
-      if (estimatedBAC <= 0){
+      var estimatedBAC = ((alcoholMiligrams / 1000) / 10) / (settings.weight * r) - (0.017 * t);
+      if (estimatedBAC <= 0) {
         return 0;
       } else return estimatedBAC.toFixed(2);
     }
@@ -137,7 +138,7 @@ angular.module('app')
   .controller('SettingsController', function ($scope, settings, $rootScope, $state) {
     $scope.settings = settings.get();
     $scope.keyboardOpen = $rootScope.keyboardOpen;
-    $scope.submit = function(){
+    $scope.submit = function () {
       settings.set($scope.settings);
       $state.go('home');
     }
@@ -146,7 +147,7 @@ angular.module('app')
   .controller('AboutController', function ($scope) {
   })
 
-  .controller('PartyController', function ($scope,$state, partyData,lastDrink, $ionicModal, definedDrinks, historyData) {
+  .controller('PartyController', function ($scope, $state, partyData, lastDrink, $ionicModal, definedDrinks, historyData) {
     $scope.partyData = partyData.get();
     $scope.lastDrink = lastDrink.get();
     $scope.historyData = historyData.get();
@@ -154,8 +155,8 @@ angular.module('app')
     $scope.limit = null;
     $scope.selectedCategory = 'All';
     $scope.selectedDrink = null;
-    $scope.newDrink = {name:'',category:'',volume:0,alcohol:0};
-    $scope.mockupDrink = {name:'Regular beer',category: 'beer',volume: '500',alcohol: '0.04'};
+    $scope.newDrink = {name: '', category: '', volume: 0, alcohol: 0};
+    $scope.mockupDrink = {name: 'Regular beer', category: 'beer', volume: '500', alcohol: '0.04'};
     $scope.limitString = '';
     $scope.getTimeLeftString = function getTimeLeftString(){
       var time = $scope.partyData.limit.datetime,
@@ -207,19 +208,24 @@ angular.module('app')
     $ionicModal.fromTemplateUrl('templates/addDrinkModal.html', {
       scope: $scope,
       animation: 'slide-in-up'
-    }).then(function(modal) {
+    }).then(function (modal) {
       $scope.modal = modal;
     });
 
-    $scope.addDrinkModal = function(){
+    $scope.openWine = function () {
+      $scope.modal.remove();
+      $state.go('wine');
+    };
+
+    $scope.addDrinkModal = function () {
       $scope.modal.show();
     };
 
-    $scope.$on('$destroy', function() {
+    $scope.$on('$destroy', function () {
       $scope.modal.remove();
     });
 
-    $scope.addSavedDrink = function(drink){
+    $scope.addSavedDrink = function (drink) {
       // partyData.addDrink(drink);
       // lastDrink.set(drink);
       // $scope.lastDrink = drink;
@@ -229,7 +235,7 @@ angular.module('app')
       $scope.modal.hide();
     };
 
-    $scope.addNewDrink = function(drink){
+    $scope.addNewDrink = function (drink) {
       definedDrinks.addDrink(drink);
       partyData.addDrink(drink);
       lastDrink.set(drink);
@@ -237,33 +243,34 @@ angular.module('app')
       $scope.modal.hide();
     };
 
-    $scope.partyIsOver = function(){
+    $scope.partyIsOver = function () {
       $scope.partyData.endDateTime = new Date().getTime();
-      $scope.partyData.end= new Date().toLocaleString();
+      $scope.partyData.end = new Date().toLocaleString();
       historyData.addParty($scope.partyData);
       $state.go('over');
     };
   })
 
-.controller('OverController', function ($scope, settings) {
-  $scope.settings = settings.get();
-  $scope.phoneno = $scope.settings.phone;
+  .controller('WineController', function ($scope) {
+  })
 
-  $scope.takeMeHome= function navigateHome() {
-    launchnavigator.isAppAvailable(launchnavigator.APP.GOOGLE_MAPS, function(isAvailable){
-      var app;
-      if(isAvailable){
-        app = launchnavigator.APP.GOOGLE_MAPS;
-      }else{
-        console.warn("Google Maps not available - falling back to user selection");
-        app = launchnavigator.APP.USER_SELECT;
-      }
-      launchnavigator.navigate($scope.settings.street+' '+$scope.settings.number+', '+$scope.settings.town, {
-        app: app
+  .controller('OverController', function ($scope, settings) {
+    $scope.settings = settings.get();
+    $scope.phoneno = $scope.settings.phone;
+
+    $scope.takeMeHome = function navigateHome() {
+      launchnavigator.isAppAvailable(launchnavigator.APP.GOOGLE_MAPS, function (isAvailable) {
+        var app;
+        if (isAvailable) {
+          app = launchnavigator.APP.GOOGLE_MAPS;
+        } else {
+          console.warn("Google Maps not available - falling back to user selection");
+          app = launchnavigator.APP.USER_SELECT;
+        }
+        launchnavigator.navigate($scope.settings.street + ' ' + $scope.settings.number + ', ' + $scope.settings.town, {
+          app: app
+        });
       });
-    });
 
-  }
-});
-
+  }});
 

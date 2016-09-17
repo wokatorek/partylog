@@ -44,6 +44,11 @@ angular.module('app')
         url: '/over',
         templateUrl: 'templates/over.html',
         controller: 'OverController'
+      })
+      .state('wine', {
+        url: '/wine',
+        templateUrl: 'templates/wine.html',
+        controller: 'WineController'
       });
 
     // if none of the above states are matched, use this as the fallback
