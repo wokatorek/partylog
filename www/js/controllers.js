@@ -213,6 +213,21 @@ angular.module('app')
 .controller('OverController', function ($scope, settings) {
   $scope.settings = settings.get();
   $scope.phoneno = $scope.settings.phone;
+
+  $scope.takeMeHome= function navigateHome() {
+    launchnavigator.isAppAvailable(launchnavigator.APP.GOOGLE_MAPS, function(isAvailable){
+      var app;
+      if(isAvailable){
+        app = launchnavigator.APP.GOOGLE_MAPS;
+      }else{
+        console.warn("Google Maps not available - falling back to user selection");
+        app = launchnavigator.APP.USER_SELECT;
+      }
+      launchnavigator.navigate($scope.settings.street+' '+$scope.settings.number+', '+$scope.settings.town, {
+        app: app
+      });
+    });
+  }
 });
 
 
