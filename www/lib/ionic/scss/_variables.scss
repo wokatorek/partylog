@@ -2,25 +2,15 @@
 // Colors
 // -------------------------------
 
-//$light:                           #fff !default;
-//$stable:                          #f8f8f8 !default;
-//$positive:                        #387ef5 !default;
-//$calm:                            #11c1f3 !default;
-//$balanced:                        #33cd5f !default;
-//$energized:                       #ffc900 !default;
-//$assertive:                       #ef473a !default;
-//$royal:                           #886aea !default;
-//$dark:                            #444 !default;
-
-$light:                           #444 !default;
-$stable:                          #886aea !default;
-$positive:                        #ef473a !default;
-$calm:                            #ffc900 !default;
+$light:                           #fff !default;
+$stable:                          #f8f8f8 !default;
+$positive:                        #387ef5 !default;
+$calm:                            #11c1f3 !default;
 $balanced:                        #33cd5f !default;
-$energized:                       #11c1f3 !default;
-$assertive:                       #387ef5 !default;
-$royal:                           #f8f8f8 !default;
-$dark:                            #fff !default;
+$energized:                       #ffc900 !default;
+$assertive:                       #ef473a !default;
+$royal:                           #886aea !default;
+$dark:                            #444 !default;
 
 
 // Base
@@ -46,8 +36,8 @@ $headings-font-family:            $font-family-base !default;
 $headings-font-weight:            500 !default;
 $headings-line-height:            1.2 !default;
 
-$base-background-color:           $light;
-$base-color:                      $dark;
+$base-background-color:           #fff !default;
+$base-color:                      #000 !default;
 
 $link-color:                      $positive !default;
 $link-hover-color:                darken($link-color, 15%) !default;
@@ -71,13 +61,13 @@ $border-radius-small:             3px !default;
 // Content
 // -------------------------------
 
-$scroll-refresh-icon-color:       $dark !default;
+$scroll-refresh-icon-color:       #666666 !default;
 
 
 // Buttons
 // -------------------------------
 
-$button-color:                    $dark !default;
+$button-color:                    #222 !default;
 $button-block-margin:             10px !default;
 $button-clear-padding:            6px !default;
 $button-border-radius:            4px !default;
@@ -107,58 +97,58 @@ $button-default-border:       transparent;
 $button-default-active-border:null;
 
 $button-light-bg:                 $light !default;
-$button-light-text:               $dark !default;
+$button-light-text:               #444 !default;
 $button-light-border:             #ddd !default;
 $button-light-active-bg:          #fafafa !default;
 $button-light-active-border:      #ccc !default;
 
 $button-stable-bg:                $stable !default;
-$button-stable-text:              $dark !default;
+$button-stable-text:              #444 !default;
 $button-stable-border:            #b2b2b2 !default;
 $button-stable-active-bg:         #e5e5e5 !default;
 $button-stable-active-border:     #a2a2a2 !default;
 
 $button-positive-bg:              $positive !default;
-$button-positive-text:            $dark !default;
+$button-positive-text:            #fff !default;
 $button-positive-border:          darken($positive, 10%) !default;
 $button-positive-active-bg:       darken($positive, 10%) !default;
 $button-positive-active-border:   darken($positive, 10%) !default;
 
 $button-calm-bg:                  $calm !default;
-$button-calm-text:                $dark !default;
+$button-calm-text:                #fff !default;
 $button-calm-border:              darken($calm, 10%) !default;
 $button-calm-active-bg:           darken($calm, 10%) !default;
 $button-calm-active-border:       darken($calm, 10%) !default;
 
 $button-assertive-bg:             $assertive !default;
-$button-assertive-text:           $dark !default;
+$button-assertive-text:           #fff !default;
 $button-assertive-border:         darken($assertive, 10%) !default;
 $button-assertive-active-bg:      darken($assertive, 10%) !default;
 $button-assertive-active-border:  darken($assertive, 10%) !default;
 
 $button-balanced-bg:              $balanced !default;
-$button-balanced-text:            $dark !default;
+$button-balanced-text:            #fff !default;
 $button-balanced-border:          darken($balanced, 10%) !default;
 $button-balanced-active-bg:       darken($balanced, 10%) !default;
 $button-balanced-active-border:   darken($balanced, 10%) !default;
 
 $button-energized-bg:             $energized !default;
-$button-energized-text:           $dark !default;
+$button-energized-text:           #fff !default;
 $button-energized-border:         darken($energized, 5%) !default;
 $button-energized-active-bg:      darken($energized, 5%) !default;
 $button-energized-active-border:  darken($energized, 5%) !default;
 
 $button-royal-bg:                 $royal !default;
-$button-royal-text:               $dark !default;
+$button-royal-text:               #fff !default;
 $button-royal-border:             darken($royal, 8%) !default;
 $button-royal-active-bg:          darken($royal, 8%) !default;
 $button-royal-active-border:      darken($royal, 8%) !default;
 
 $button-dark-bg:                  $dark !default;
-$button-dark-text:                $dark !default;
+$button-dark-text:                #fff !default;
 $button-dark-border:              #111 !default;
 $button-dark-active-bg:           #262626 !default;
-$button-dark-active-border:       $light !default;
+$button-dark-active-border:       #000 !default;
 
 $button-default-bg:               $button-stable-bg !default;
 $button-default-text:             $button-stable-text !default;
@@ -295,7 +285,7 @@ $tab-item-max-width:              150px !default;
 
 $tabs-off-opacity:                0.4 !default;
 $tabs-striped-off-opacity:        $tabs-off-opacity !default;
-$tabs-striped-off-color:          $light !default;
+$tabs-striped-off-color:          #000 !default;
 $tabs-striped-border-width:       2px !default;
 
 
