@@ -28,17 +28,11 @@ angular.module('app')
         };
       },
       set: function (partyObject) {
-        console.log('setting party: '+partyObject);
         window.localStorage.setItem('partyData', angular.toJson(partyObject));
       },
       addDrink: function (drinkObject) {
-        console.log('adding drink: '+drinkObject);
-        console.log(drinkObject);
         var tmp = angular.fromJson(window.localStorage.getItem('partyData'));
-        console.log('partyData: '+tmp);
         tmp.drinks.push(drinkObject);
-        console.log('partyData: '+tmp);
-        console.log('partyData.drinks.length: '+tmp.drinks.length);
         window.localStorage.setItem('partyData', angular.toJson(tmp));
       },
       clear: function(){
@@ -71,27 +65,29 @@ angular.module('app')
     return {
       get: function () {
         var tmp = window.localStorage.getItem('historyData');
-        return tmp ? angular.fromJson(tmp) : [{
-          name: 'My Birthday',
-          start: '16.09.2016, 17:50',
-          startDateTime: 1474048200000,
-          end: '16.09.2016, 23:50',
-          endDateTime: 1474069800000,
-          drinks: [{name: 'Beer', alcohol: '0.04', volume: '500'}, {name: 'Beer', alcohol: '0.04', volume: '500'}]
-        }, {
-          name: 'Graduation Party',
-          start: '25.08.2016, 17:00',
-          startDateTime: 1466874000000,
-          end: '25.08.2016, 22:30',
-          endDateTime: 1466893800000,
-          drinks: [{name: 'Wine', alcohol: '0.12', volume: '150'}]
-        }]
+        return tmp ? angular.fromJson(tmp) : [];
+        //   [{
+        //   name: 'My Birthday',
+        //   start: '16.09.2016, 17:50',
+        //   startDateTime: 1474048200000,
+        //   end: '16.09.2016, 23:50',
+        //   endDateTime: 1474069800000,
+        //   drinks: [{name: 'Beer', alcohol: '0.04', volume: '500'}, {name: 'Beer', alcohol: '0.04', volume: '500'}]
+        // }, {
+        //   name: 'Graduation Party',
+        //   start: '25.08.2016, 17:00',
+        //   startDateTime: 1466874000000,
+        //   end: '25.08.2016, 22:30',
+        //   endDateTime: 1466893800000,
+        //   drinks: [{name: 'Wine', alcohol: '0.12', volume: '150'}]
+        // }]
       },
-      set: function (drinkObject) {
-        window.localStorage.setItem('historyData', angular.toJson(drinkObject));
+      set: function (partyObject) {
+        window.localStorage.setItem('historyData', angular.toJson(partyObject));
       },
       addParty: function (partyObject) {
         var tmp = angular.fromJson(window.localStorage.getItem('historyData'));
+        console.log(partyObject);
         tmp.push(partyObject);
         window.localStorage.setItem('historyData', angular.toJson(tmp));
       },
@@ -105,7 +101,6 @@ angular.module('app')
     return {
       get: function () {
         var tmp = window.localStorage.getItem('lastDrink');
-        console.log('lastDrink: '+angular.fromJson(tmp));
         return tmp ? angular.fromJson(tmp) : {name:'',alcohol:'',volume:''};
       },
       set: function (drinkObject) {

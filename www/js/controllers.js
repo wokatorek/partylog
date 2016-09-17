@@ -2,9 +2,12 @@
 
 angular.module('app')
 
-  .controller('HomeController', function ($scope,partyData, $ionicModal, $state) {
+  .controller('HomeController', function ($scope,partyData, $ionicModal, $state, historyData) {
     $scope.partyData = {name: '', start: '', end: '', limit: {type: '', quantity: '', unit: ''},drinks:[]};
     partyData.clear();
+    if(!window.localStorage.getItem('historyData')){
+      historyData.set([]);
+    }
 
     $ionicModal.fromTemplateUrl('templates/partyModal.html', {
       scope: $scope,
@@ -163,7 +166,7 @@ angular.module('app')
     }
 
     $scope.duplicateDrink = function (){
-      partyData.addDrink($scope.lastDrink);
+      $scope.partyData.drinks.push($scope.lastDrink);
     };
 
     $ionicModal.fromTemplateUrl('templates/addDrinkModal.html', {
@@ -200,8 +203,9 @@ angular.module('app')
     };
 
     $scope.partyIsOver = function(){
-      historyData.addParty(partyData);
-      partyData.clear();
+      $scope.partyData.endDateTime = new Date().getTime();
+      $scope.partyData.end= new Date().toLocaleString();
+      historyData.addParty($scope.partyData);
       $state.go('over');
     }
   })
