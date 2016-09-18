@@ -19,5 +19,9 @@ angular.module('app', ['ionic'])
       // org.apache.cordova.statusbar required
       StatusBar.styleDefault();
     }
+
+    cordova.plugins.notification.local.registerPermission(function (granted) {
+      console.log('Permission has been granted: ' + granted);
+    });
   });
 });
