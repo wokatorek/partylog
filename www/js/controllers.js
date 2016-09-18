@@ -151,6 +151,7 @@ angular.module('app')
   })
 
   .controller('PartyController', function ($scope, $state, partyData, lastDrink, $ionicModal, definedDrinks, historyData) {
+    console.log('this party controller is run');
     $scope.partyData = partyData.get();
     $scope.lastDrink = lastDrink.get();
     $scope.historyData = historyData.get();
@@ -216,8 +217,7 @@ angular.module('app')
     });
 
     $scope.openWine = function () {
-      $scope.modal.remove();
-      console.log('in');
+      $scope.modal.hide();
       $state.go('wine');
     };
 
