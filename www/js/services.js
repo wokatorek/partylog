@@ -56,7 +56,7 @@ angular.module('app')
       },
       addDrink: function (drinkObject) {
         var tmp = angular.fromJson(window.localStorage.getItem('definedDrinks'));
-        tmp.drinks.push(drinkObject);
+        tmp.push(drinkObject);
         window.localStorage.setItem('definedDrinks', angular.toJson(tmp));
       }
     }
@@ -105,6 +105,26 @@ angular.module('app')
       },
       set: function (drinkObject) {
         window.localStorage.setItem('lastDrink', angular.toJson(drinkObject));
+      }
+    }
+  })
+
+  .directive('alcoholFormat', function()
+  {
+    return{
+      restrict: 'A',
+      require: 'ngModel',
+      link: function(scope, element, attrs, ngModelController)
+      {
+        ngModelController.$formatters.push(function(value)
+        {
+          return value*100;
+        })
+
+        ngModelController.$parsers.push(function(value)
+        {
+          return value/100;
+        })
       }
     }
   });
