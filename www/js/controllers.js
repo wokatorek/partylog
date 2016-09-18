@@ -243,6 +243,21 @@ angular.module('app')
       $state.go('wine');
     };
 
+    $scope.openBeer = function () {
+      $scope.modal.hide();
+      $state.go('beer');
+    };
+
+    $scope.openVodka = function () {
+      $scope.modal.hide();
+      $state.go('vodka');
+    };
+
+    $scope.openLongDrink = function () {
+      $scope.modal.hide();
+      $state.go('longDrink');
+    };
+
     $scope.addDrinkModal = function () {
       $scope.modal.show();
     };
@@ -273,6 +288,8 @@ angular.module('app')
       $scope.partyData.endDateTime = new Date().getTime();
       $scope.partyData.end = new Date().toLocaleString();
       historyData.addParty($scope.partyData);
+      partyData.clear();
+      $scope.partyData = {};
       $state.go('over');
     };
   })
@@ -281,6 +298,48 @@ angular.module('app')
     $scope.partyData = partyData.get();
     $scope.lastDrink = lastDrink.get();
     $scope.newDrink = {name: 'Wine', alcohol: 0.12, volume: 150};
+
+    $scope.addNewDrink = function () {
+      definedDrinks.addDrink($scope.newDrink);
+      partyData.addDrink($scope.newDrink);
+      lastDrink.set($scope.newDrink);
+      $scope.lastDrink = $scope.newDrink;
+      $state.go('party');
+    };
+  })
+
+  .controller('BeerController', function ($scope, definedDrinks, partyData, lastDrink, $state) {
+    $scope.partyData = partyData.get();
+    $scope.lastDrink = lastDrink.get();
+    $scope.newDrink = {name: 'Beer', alcohol: 0.045, volume: 500};
+
+    $scope.addNewDrink = function () {
+      definedDrinks.addDrink($scope.newDrink);
+      partyData.addDrink($scope.newDrink);
+      lastDrink.set($scope.newDrink);
+      $scope.lastDrink = $scope.newDrink;
+      $state.go('party');
+    };
+  })
+
+  .controller('VodkaController', function ($scope, definedDrinks, partyData, lastDrink, $state) {
+    $scope.partyData = partyData.get();
+    $scope.lastDrink = lastDrink.get();
+    $scope.newDrink = {name: 'Vodka', alcohol: 0.40, volume: 50};
+
+    $scope.addNewDrink = function () {
+      definedDrinks.addDrink($scope.newDrink);
+      partyData.addDrink($scope.newDrink);
+      lastDrink.set($scope.newDrink);
+      $scope.lastDrink = $scope.newDrink;
+      $state.go('party');
+    };
+  })
+
+  .controller('LongDrinkController', function ($scope, definedDrinks, partyData, lastDrink, $state) {
+    $scope.partyData = partyData.get();
+    $scope.lastDrink = lastDrink.get();
+    $scope.newDrink = {name: 'LongDrink', alcohol: 0.18, volume: 200};
 
     $scope.addNewDrink = function () {
       definedDrinks.addDrink($scope.newDrink);
