@@ -14,7 +14,7 @@
         <ion-item class="item-accordion " ng-show="isGroupShown(item)">
           End: {{item.end}}
         </ion-item>
-        <ion-item class="item-accordion " ng-show="isGroupShown(item)">
+        <ion-item class="item-accordion item-text-wrap" ng-show="isGroupShown(item)">
           Drinks: <span ng-if="isGroupShown(item)" ng-repeat="drink in item.drinks">{{drink.name}}, {{drink.alcohol*100}}%, {{drink.volume}}ml; </span>
         </ion-item>
         <!--<ion-item ng-if="isGroupShown(item)" ng-repeat="drink in item.drinks">-->

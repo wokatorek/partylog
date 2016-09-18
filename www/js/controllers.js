@@ -211,6 +211,7 @@ angular.module('app')
       console.log('nah');
       $scope.limitString = '' + $scope.partyData.limit.quantity.toString() + ' drinks ('+($scope.partyData.limit.quantity-$scope.partyData.drinks.length)+' left)';
       $scope.$watch('partyData.drinks.length',function(){
+        if(!$scope.partyData.limit) return;
         $scope.limitString = '' + $scope.partyData.limit.quantity.toString() + ' drinks ('+($scope.partyData.limit.quantity-$scope.partyData.drinks.length)+' left)';
         if($scope.partyData.limit.quantity-$scope.partyData.drinks.length <= 0){
           $ionicPopup.alert({
