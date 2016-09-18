@@ -1,0 +1,18 @@
+<ion-view view-title="Shot/Vodka">
+  <ion-content class="padding">
+    <form name="vodkaForm" novalidate>
+    <label class="item item-input">
+      <span class="input-label">Alcohol [%] </span>
+      <input type="number" ng-model="newDrink.alcohol" alcohol-format name="alcohol"required min="0" max="100">
+    </label>
+    <label class="item item-input">
+      <span class="input-label">Volume [ml] </span>
+      <input type="number" ng-model="newDrink.volume" name="volume"required min="0">
+    </label>
+    </form>
+    <div class="item">
+      <button type="submit" class="button button-block button-positive" ng-click="addNewDrink()">OK <i
+        class="icon ion-checkmark-round"></i></button>
+    </div>
+  </ion-content>
+</ion-view>

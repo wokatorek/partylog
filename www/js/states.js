@@ -49,6 +49,21 @@ angular.module('app')
         url: '/wine',
         templateUrl: 'templates/wine.html',
         controller: 'WineController'
+      })
+      .state('beer', {
+        url: '/beer',
+        templateUrl: 'templates/beer.html',
+        controller: 'BeerController'
+      })
+      .state('vodka', {
+      url: '/vodka',
+      templateUrl: 'templates/vodka.html',
+      controller: 'VodkaController'
+    })
+      .state('longDrink', {
+        url: '/longDrink',
+        templateUrl: 'templates/longDrink.html',
+        controller: 'LongDrinkController'
       });
 
     // if none of the above states are matched, use this as the fallback
