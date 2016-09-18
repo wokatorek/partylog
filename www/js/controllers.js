@@ -21,6 +21,20 @@ angular.module('app')
     $scope.seriouslyStartTheParty = function () {
       $scope.modal.hide();
       partyData.set($scope.partyData);
+
+      if ($scope.partyData.limit.type === 'time'){
+        cordova.plugins.notification.local.schedule({
+          id: 1,
+          title: "You reached your limit!",
+          text: 'It is time to leave the party...',
+          at: $scope.partyData.limit.datetime,
+          icon: "res://drawable-xxxhdpi/icon.png",
+          led: 'FF0000'
+        });
+      }
+      // cordova.plugins.notification.local.on("click", function (notification) {
+      //   joinMeeting(notification.data.meetingId);
+      // });
       $state.go('party');
     };
     // Cleanup the modal when we're done with it!
