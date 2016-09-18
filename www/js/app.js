@@ -2,7 +2,11 @@
 
 angular.module('app', ['ionic'])
 
-.run(function($ionicPlatform, $ionicConfigProvider) {
+  .config(function($ionicConfigProvider){
+    $ionicConfigProvider.platform.android.views.maxCache(0);
+  })
+
+.run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -15,6 +19,5 @@ angular.module('app', ['ionic'])
       // org.apache.cordova.statusbar required
       StatusBar.styleDefault();
     }
-    $ionicConfigProvider.platform.android.views.maxCache(5)
   });
 });
