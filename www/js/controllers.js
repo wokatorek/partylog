@@ -164,7 +164,7 @@ angular.module('app')
   .controller('AboutController', function ($scope) {
   })
 
-  .controller('PartyController', function ($scope, $state, partyData, lastDrink, $ionicModal, definedDrinks, historyData) {
+  .controller('PartyController', function ($scope, $state, partyData, lastDrink, $ionicModal, definedDrinks, historyData, $ionicPopup) {
     console.log('this party controller is run');
     $scope.partyData = partyData.get();
     $scope.lastDrink = lastDrink.get();
@@ -212,6 +212,14 @@ angular.module('app')
       $scope.limitString = '' + $scope.partyData.limit.quantity.toString() + ' drinks ('+($scope.partyData.limit.quantity-$scope.partyData.drinks.length)+' left)';
       $scope.$watch('partyData.drinks.length',function(){
         $scope.limitString = '' + $scope.partyData.limit.quantity.toString() + ' drinks ('+($scope.partyData.limit.quantity-$scope.partyData.drinks.length)+' left)';
+        if($scope.partyData.limit.quantity-$scope.partyData.drinks.length <= 0){
+          $ionicPopup.alert({
+            title: 'This is your last drink',
+            template: 'You reached your drink limit. It\'s time to leave this party'
+          }).then(function() {
+            $scope.partyIsOver();
+          });
+        }
       });
     }
 
