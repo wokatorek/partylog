@@ -79,9 +79,6 @@ angular.module('app')
         minutes = Math.floor(seconds / 60),
         hours = Math.floor(minutes / 60),
         days = Math.floor(hours / 24);
-      console.debug(difference);
-      console.debug(time);
-      console.debug(timeNow);
       if (days > 1) {
         return days + " days ago";
       } else if (days == 1) {
@@ -164,13 +161,50 @@ angular.module('app')
     $scope.newDrink = {name: '', category: '', volume: 0, alcohol: 0};
     $scope.mockupDrink = {name: 'Regular beer', category: 'beer', volume: '500', alcohol: '0.04'};
     $scope.limitString = '';
-    if ($scope.partyData.limit.type === 'time') {
-      $scope.limitString = new Date($scope.partyData.limit.datetime).toLocaleString();
-    } else if ($scope.partyData.limit.type === 'alcohol') {
-      $scope.limitString = '' + $scope.partyData.limit.quantity.toString() + ' drinks';
+    $scope.getTimeLeftString = function getTimeLeftString(){
+      var time = $scope.partyData.limit.datetime,
+        timeNow = new Date().getTime(),
+        difference = time - timeNow,
+        seconds = Math.floor(difference / 1000),
+        minutes = Math.floor(seconds / 60),
+        hours = Math.floor(minutes / 60),
+        days = Math.floor(hours / 24);
+      console.log(difference);
+      if (days > 1) {
+        return days + " days";
+      } else if (days == 1) {
+        return "1 day"
+      } else if (hours > 1) {
+        return hours + " hours";
+      } else if (hours == 1) {
+        return "1 hour";
+      } else if (minutes > 1) {
+        return minutes + " minutes";
+      } else if (minutes == 1){
+        return "a minute";
+      } else {
+        return "a few seconds";
+      }
+    };
+    if($scope.partyData.limit.type==='time'){
+      console.log('sure');
+      $scope.limitString = new Date($scope.partyData.limit.datetime).toLocaleString() + ' ('+($scope.getTimeLeftString($scope.partyData.limit.datetime))+' left)';
+      $scope.$watch('getTimeLeftString', function(){
+        $scope.limitString = new Date($scope.partyData.limit.datetime).toLocaleString() + ' ('+($scope.getTimeLeftString($scope.partyData.limit.datetime))+' left)';
+      });
+    } else if($scope.partyData.limit.type==='alcohol'){
+      console.log('nah');
+      $scope.limitString = '' + $scope.partyData.limit.quantity.toString() + ' drinks ('+($scope.partyData.limit.quantity-$scope.partyData.drinks.length)+' left)';
+      $scope.$watch('partyData.drinks.length',function(){
+        $scope.limitString = '' + $scope.partyData.limit.quantity.toString() + ' drinks ('+($scope.partyData.limit.quantity-$scope.partyData.drinks.length)+' left)';
+      });
     }
 
-    $scope.duplicateDrink = function () {
+    // $scope.$watch('partyData.drinks.length',function(){
+    //   $scope.limitString = '' + $scope.partyData.limit.quantity.toString() + ' drinks ('+($scope.partyData.limit.quantity-$scope.partyData.drinks.length)+' left)';
+    // });
+
+    $scope.duplicateDrink = function (){
       $scope.partyData.drinks.push($scope.lastDrink);
     };
 
@@ -218,7 +252,7 @@ angular.module('app')
       $scope.partyData.end = new Date().toLocaleString();
       historyData.addParty($scope.partyData);
       $state.go('over');
-    }
+    };
   })
 
   .controller('WineController', function ($scope, definedDrinks, partyData, lastDrink, $state) {
@@ -252,7 +286,6 @@ angular.module('app')
           app: app
         });
       });
-    }
-  });
 
+  }});
 
