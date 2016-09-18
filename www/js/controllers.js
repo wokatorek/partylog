@@ -111,6 +111,7 @@ angular.module('app')
     }
 
     $scope.alcoholMiligrams = calculateMiligrams($scope.lastParty.drinks);
+    $scope.alcoholMiligramsDisplayed = $scope.alcoholMiligrams.toFixed(0);
 
     function calculateMiligrams(drinks) {
       var grams = 0;
