@@ -280,6 +280,8 @@ angular.module('app')
       $scope.partyData.endDateTime = new Date().getTime();
       $scope.partyData.end = new Date().toLocaleString();
       historyData.addParty($scope.partyData);
+      partyData.clear();
+      $scope.partyData = {};
       $state.go('over');
     };
   })
