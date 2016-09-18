@@ -2,11 +2,14 @@
 
 angular.module('app')
 
-  .controller('HomeController', function ($scope, partyData, $ionicModal, $state, historyData) {
+  .controller('HomeController', function ($scope, partyData, $ionicModal, $state, historyData, definedDrinks) {
     $scope.partyData = {name: '', start: '', end: '', limit: {type: '', quantity: '', unit: ''}, drinks: []};
     partyData.clear();
     if (!window.localStorage.getItem('historyData')) {
       historyData.set([]);
+    }
+    if (!window.localStorage.getItem('definedDrinks')) {
+      definedDrinks.set([]);
     }
 
     $ionicModal.fromTemplateUrl('templates/partyModal.html', {
@@ -214,6 +217,7 @@ angular.module('app')
 
     $scope.openWine = function () {
       $scope.modal.remove();
+      console.log('in');
       $state.go('wine');
     };
 
@@ -251,7 +255,18 @@ angular.module('app')
     };
   })
 
-  .controller('WineController', function ($scope) {
+  .controller('WineController', function ($scope, definedDrinks, partyData, lastDrink, $state) {
+    $scope.partyData = partyData.get();
+    $scope.lastDrink = lastDrink.get();
+    $scope.newDrink = {name: 'Wine', alcohol: 0.12, volume: 150};
+
+    $scope.addNewDrink = function () {
+      definedDrinks.addDrink($scope.newDrink);
+      partyData.addDrink($scope.newDrink);
+      lastDrink.set($scope.newDrink);
+      $scope.lastDrink = $scope.newDrink;
+      $state.go('party');
+    };
   })
 
   .controller('OverController', function ($scope, settings) {
