@@ -151,15 +151,15 @@ angular.module('app')
     $scope.partyData = partyData.get();
     $scope.lastDrink = lastDrink.get();
     $scope.historyData = historyData.get();
-    console.debug(lastDrink.get());
     $scope.limit = null;
     $scope.selectedCategory = 'All';
     $scope.selectedDrink = null;
     $scope.newDrink = {name: '', category: '', volume: 0, alcohol: 0};
     $scope.mockupDrink = {name: 'Regular beer', category: 'beer', volume: '500', alcohol: '0.04'};
     $scope.limitString = '';
+    console.log($scope.partyData.limit);
     $scope.getTimeLeftString = function getTimeLeftString(){
-      var time = $scope.partyData.limit.datetime,
+      var time = new Date($scope.partyData.limit.datetime).getTime(),
         timeNow = new Date().getTime(),
         difference = time - timeNow,
         seconds = Math.floor(difference / 1000),
